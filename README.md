@@ -2,7 +2,7 @@
 
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=cuixing158/Single-Image-Undistort)
 
-本仓库旨在实现单幅畸变图像矫正的非典型方法，适用轻微畸变和严重畸变，部分具体理论和实践可以参考[此处](./README_theoretical.md)。
+本仓库旨在实现单幅畸变图像矫正的非典型方法，适用轻微畸变和严重畸变，部分具体理论和实践可以参考[此处pdf](./undistortFisheyeFromSingleView.pdf)。
 
 ## Requirements
 
@@ -48,5 +48,7 @@ MathWorks Products (<https://www.mathworks.com>)
 ## References
 
 [1] <https://github.com/subeeshvasu/Awesome-Image-Distortion-Correction>
+
 [2] <https://github.com/ethz-asl/image_undistort>
+
 [3] <https://discorpy.readthedocs.io/en/latest/usage/demo_08.html#fig-75>

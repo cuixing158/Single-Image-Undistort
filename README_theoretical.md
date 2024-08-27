@@ -15,94 +15,87 @@ Email: <cuixingxing150@gmail.com>
 - 多项式模型( Brown-Conrady)
 
 $$
-\begin{equation}
-\left\{\begin{matrix}
- x_u = x_d+(x_d-x_c)(K_1r_d^2+K_2r_d^4+...)+(P_1(r_d^2+2(x_d-x_c)^2)+2P_2(x_d-x_c)(y_d-y_c))(1+P_3r_d^2+P_4r_d^4+...) \\
- y_u = y_d+(y_d-y_c)(K_1r_d^2+K_2r_d^4+...)+(P_1(r_d^2+2(y_d-y_c)^2)+2P_2(x_d-x_c)(y_d-y_c))(1+P_3r_d^2+P_4r_d^4+...)
-\end{matrix}\right.
-\end{equation}
+\begin{matrix}
+x_u = x_d + (x_d - x_c)(K_1r_d^2 + K_2r_d^4 + \ldots) + (P_1(r_d^2 + 2(x_d - x_c)^2) + 2P_2(x_d - x_c)(y_d - y_c))(1 + P_3r_d^2 + P_4r_d^4 + \ldots) \\
+y_u = y_d + (y_d - y_c)(K_1r_d^2 + K_2r_d^4 + \ldots) + (P_1(r_d^2 + 2(y_d - y_c)^2) + 2P_2(x_d - x_c)(y_d - y_c))(1 + P_3r_d^2 + P_4r_d^4 + \ldots)
+\end{matrix}
 $$
 
-式中：
-$(x_d,y_d)$畸变图像上的像素点坐标；<br>
-$(x_u,y_u)$无畸变图像(完美针孔相机)上的像素点坐标；<br>
-$(x_c,y_c)$畸变中心；<br>
-$K_n$第$n$个径向畸变系数;<br>
-$P_n$第$n$个切向畸变系数；<br>
-$r_d=\sqrt{(x_d-x_c)^2+(y_d-y_c)^2}$畸变图像点到畸变中心的欧式距离。<br>
+
+式中：  
+$(x_d,y_d)$ 畸变图像上的像素点坐标；  
+$(x_u,y_u)$ 无畸变图像(完美针孔相机)上的像素点坐标；  
+$(x_c,y_c)$ 畸变中心；  
+$K_n$ 第$n$个径向畸变系数;  
+$P_n$ 第$n$个切向畸变系数；  
+$r_d=\sqrt{(x_d-x_c)^2+(y_d-y_c)^2}$ 畸变图像点到畸变中心的欧式距离。
 
 - 除法模型(Fitzgibbon)
 
 $$
-\begin{equation}
-\left\{\begin{matrix}
- x_u = x_c+\frac{x_d-x_c}{1+K_1r_d^2+K_2r_d^4+...}  \\
- y_u = y_c+\frac{y_d-x_c}{1+K_1r_d^2+K_2r_d^4+...}
-\end{matrix}\right.
-\end{equation}
+\begin{matrix}
+x_u = x_c+\frac{x_d-x_c}{1+K_1r_d^2+K_2r_d^4+...} \\
+y_u = y_c+\frac{y_d-x_c}{1+K_1r_d^2+K_2r_d^4+...}
+\end{matrix}
 $$
 
-式中符号意义同上，使用此模型特别是遇到严重畸变的图像比多项式模型更具有较高的精度而且使用的项数较少，通常情况下，只使用一项$ K_1 $近似就足以能够满足绝大多数相机镜头。
-特别地，当使用一项$ K_1 $时，从数学上可以分析求解得到逆变换的解析解：
+式中符号意义同上，使用此模型特别是遇到严重畸变的图像比多项式模型更具有较高的精度而且使用的项数较少，通常情况下，只使用一项$K_1$近似就足以能够满足绝大多数相机镜头。  
+特别地，当使用一项$K_1$时，从数学上可以分析求解得到逆变换的解析解：
 
 $$
-\begin{equation}
-\left\{\begin{matrix}
- x_d = x_c+\frac{x_u-x_c}{2K_1r_u^2}(1-\sqrt{1-4K_1r_u^2})  \\
- y_d = y_c+\frac{y_u-y_c}{2K_1r_u^2}(1-\sqrt{1-4K_1r_u^2})
-\end{matrix}\right.
-\end{equation}
+\begin{matrix}
+x_d = x_c+\frac{x_u-x_c}{2K_1r_u^2}(1-\sqrt{1-4K_1r_u^2}) \\
+y_d = y_c+\frac{y_u-y_c}{2K_1r_u^2}(1-\sqrt{1-4K_1r_u^2})
+\end{matrix}
 $$
 
-式中：
-$ r_u=\sqrt{(x_u-x_c)^2+(y_u-y_c)^2} $无畸变图像点到畸变中心或无畸变中心的欧式距离；其他符号意义同上。
+式中：  
+$r_u=\sqrt{(x_u-x_c)^2+(y_u-y_c)^2}$ 无畸变图像点到畸变中心或无畸变中心的欧式距离；其他符号意义同上。
 
 ## 如何根据“畸变直线”估计求解畸变系数和中心？
 
 为便于分析计算，使用上述除法模型的一项近似，有：
+
 $$
-\begin{equation}
-\left\{\begin{matrix}
- x_u = x_c+\frac{x_d-x_c}{1+K_1r_d^2}  \\
- y_u = y_c+\frac{y_d-x_c}{1+K_1r_d^2}
-\end{matrix}\right.
-\end{equation}
+\begin{matrix}
+x_u = x_c+\frac{x_d-x_c}{1+K_1r_d^2} \\
+y_u = y_c+\frac{y_d-x_c}{1+K_1r_d^2}
+\end{matrix}\
 $$
+
 对于无畸变图像上的任意直线方程的通式可表达为：
+
 $$
-\begin{equation}
-\left\{\begin{matrix}
- ax_u+by_u+c=0 \\
- a^2+b^2+c^2=1
-\end{matrix}\right.
-\end{equation}
+\begin{matrix}
+ax_u+by_u+c=0 \\
+a^2+b^2+c^2=1
+\end{matrix}
 $$
-实际上上述方程只有2个独立变量，故不妨约束系数$(a,b,c)$的模为1.
+
+实际上上述方程只有2个独立变量，故不妨约束系数 $(a,b,c)$ 的模为1.
 
 然后，式(4)带入式(5)，为避免重复推导，直接引用文献[2]的公式，可得到如下形式方程：
-$$
-\begin{equation}
-x_d^2+y_d^2+Ax_d+By_d+C=0
-\end{equation}
-$$
-$$
-\begin{equation}
-x_0^2+y_0^2+Ax_0+By_0+C=\frac{1}{\lambda}
-\end{equation}
-$$
-注意：式(4)中的$(x_0,y_0)$对应上述中的$(x_c,y_c)$，$\lambda$对应上述的$K_1$。
-我们可以看出，式(6)即为二维平面上圆的方程，通过畸变点可以拟合出一组圆弧的系数$[A,B,C]$,但为了求式（7）中的畸变中心$(x_0,y_0)$和畸变系数$\lambda$，共3个未知参数，至少需要3个独立的方程求解，即需要至少3组$[A,B,C]$,对应3组圆弧即可求解。求解公式为：
 
 $$
-\begin{equation}
-\left\{\begin{matrix}
- (A_i-A_j)x_0 +(B_i-B_j)y_0+(C_i-C_j)=0  \\
+x_d^2+y_d^2+Ax_d+By_d+C=0
+$$
+
+$$
+x_0^2+y_0^2+Ax_0+By_0+C=\frac{1}{\lambda}
+$$
+
+注意：式(4)中的 $(x_0,y_0)$ 对应上述中的 $(x_c,y_c)$ ，$\lambda$ 对应上述的 $K_1$ 。  
+我们可以看出，式(6)即为二维平面上圆的方程，通过畸变点可以拟合出一组圆弧的系数 $[A,B,C]$ ，但为了求式（7）中的畸变中心 $(x_0,y_0)$ 和畸变系数 $\lambda$ ，共3个未知参数，至少需要3个独立的方程求解，即需要至少3组 $[A,B,C]$ ，对应3组圆弧即可求解。求解公式为：
+
+$$
+\begin{matrix}
+(A_i-A_j)x_0 +(B_i-B_j)y_0+(C_i-C_j)=0 \\
 (A_i-A_k)x_0 +(B_i-B_k)y_0+(C_i-C_k)=0 \\
 (A_j-A_k)x_0 +(B_j-B_k)y_0+(C_j-C_k)=0
-\end{matrix}\right.
-\end{equation}
+\end{matrix}
 $$
-畸变中心$(x_0,y_0)$求解出来后，带入式(7)，可求出畸变系数$\lambda$,完毕。
+
+畸变中心 $(x_0,y_0)$ 求解出来后，带入式(7)，可求出畸变系数 $\lambda$ ，完毕。
 
 ## 图像如何去畸变？
 
@@ -110,21 +103,24 @@ $$
 
 ## 鲁棒性去伪评估策略
 
-传统上一般使用RANSAC算法或者改进算法进行鲁棒估计，或者无畸变点到拟合“直线”的误差平方和作为评估代价函数，本文章为进一步提高评估质量，以最小区域法则进行逆向评估直线度，两包络无畸变点的平行直线$l1:ax+by+c=0$，$l2:ax+by+d=0$，其评估公式如下:
+传统上一般使用RANSAC算法或者改进算法进行鲁棒估计，或者无畸变点到拟合“直线”的误差平方和作为评估代价函数，本文章为进一步提高评估质量，以最小区域法则进行逆向评估直线度，两包络无畸变点的平行直线 $l1:ax+by+c=0$ ， $l2:ax+by+d=0$ ，其评估公式如下:
+
 $$
 \begin{equation}
 \begin{split}
-&\varepsilon = \mathop{\arg\min}\limits_{a,b,c,c,d}(\frac{\lvert c-d \rvert}{\sqrt{a^2+b^2}})\\
-&s.t.\quad  \left\{\begin{array}{lc}
+&\varepsilon = \mathop{\arg\min}\limits_{a,b,c,d}\left(\frac{\lvert c-d \rvert}{\sqrt{a^2+b^2}}\right)\\
+&s.t.\quad  \begin{cases}
 (ax_i+by_i+c)(ax_i+by_i+d)\leq0\\
- a^2+b^2+c^2=1\\
-\end{array}\right.
+a^2+b^2+c^2=1\\
+\end{cases}
 \end{split}
 \end{equation}
 $$
+
+
 上式优化属于典型的求解多元变量非线性约束优化问题，使用“interior-Point Algorithm”求解即可,对大规模数据集有较快的速度，必要时候可以提供一阶/二阶导数支持。
 
-- 求满足上述条件的$l1$,$l2$平行线示例
+- 求满足上述条件的 $l1$ , $l2$ 平行线示例
 
 ```matlab
 numPts = 300;% 随机产生300个二维点
@@ -237,7 +233,7 @@ F--No-->C
 
 ## 一些思考
 
-本技术虽然基于畸变图像中潜在的多条“直线”特征信息完成了去畸变，此时的图像可以当做完美针孔相机所拍摄的图像。但是另外根据[2022年8月份个人开源的仓库](https://github.com/cuixing158/single-Image-Calibration)(仅从单幅针孔图像估计相机内外参)，如果此针孔图像中能找到至少3对（或者2对，此时相机主点假设在图像中心）正交的“消失线”，则可估计对应针孔图像相机的内参矩阵$K_{3\times3}$，如果还已知此针孔图像中某些物体的具体物理尺寸（比如宽或者高），则还可以进一步估计出相机的外参矩阵$[R_{3\times3},t_{3\times1}]$。
+本技术虽然基于畸变图像中潜在的多条“直线”特征信息完成了去畸变，此时的图像可以当做完美针孔相机所拍摄的图像。但是另外根据[2022年8月份个人开源的仓库](https://github.com/cuixing158/single-Image-Calibration)(仅从单幅针孔图像估计相机内外参)，如果此针孔图像中能找到至少3对（或者2对，此时相机主点假设在图像中心）正交的“消失线”，则可估计对应针孔图像相机的内参矩阵 $K_{3\times3}$ ，如果还已知此针孔图像中某些物体的具体物理尺寸（比如宽或者高），则还可以进一步估计出相机的外参矩阵 $[R_{3\times3},t_{3\times1}]$ 。
 
 ---
 如有对本技术有疑问或者任何相关问题，均可探讨学习~

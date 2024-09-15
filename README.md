@@ -17,12 +17,12 @@ MathWorks Products (<https://www.mathworks.com>)
 
 ## 一些示例
 
-- [普通广角/鱼眼镜头径向去畸变——除法模型动态调整实时求解](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F2b553f3f-1557-4261-8ade-eee71848dbb9%2F1724982214%2Ffiles%2Fdemo_dynamicDistortCoff2.mlx&embed=web)
-- [非常规图像去畸变](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F2b553f3f-1557-4261-8ade-eee71848dbb9%2F1724982214%2Ffiles%2Fdemo_geoImageWarp.mlx&embed=web)
-- [普通广角/鱼眼镜头径向畸变——除法模型逆变换代数求解](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F2b553f3f-1557-4261-8ade-eee71848dbb9%2F1724982214%2Ffiles%2Fdemo_solve_inverse.mlx&embed=web)
-- [基于无需标定相机的方式直接对普通广角/超广角/鱼眼视频做BEV](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F2b553f3f-1557-4261-8ade-eee71848dbb9%2F1724982214%2Ffiles%2Fdemo_undistortImage_BEV.mlx&embed=web)
-- [对去畸变后的图像建筑物"竖直倾斜"的直线进行矫正](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F2b553f3f-1557-4261-8ade-eee71848dbb9%2F1724982214%2Ffiles%2Fdemo_undistortImage_perspective.mlx&embed=web)
-- [基于单系数除法模型对普通广角/鱼眼镜头图像去畸变实现](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F2b553f3f-1557-4261-8ade-eee71848dbb9%2F1724982214%2Ffiles%2Fdemo_undistortImage_synthetic.mlx&embed=web)
+- [普通广角/鱼眼镜头径向去畸变——除法模型动态调整实时求解](./demo_dynamicDistortCoff2.mlx)
+- [非常规图像去畸变](./demo_geoImageWarp.mlx)
+- [普通广角/鱼眼镜头径向畸变——除法模型逆变换代数求解](./demo_solve_inverse.mlx)
+- [基于无需标定相机的方式直接对普通广角/超广角/鱼眼视频做BEV](./demo_undistortImage_BEV.mlx)
+- [对去畸变后的图像建筑物"竖直倾斜"的直线进行矫正](./demo_undistortImage_perspective.mlx)
+- [基于单系数除法模型对普通广角/鱼眼镜头图像去畸变实现](./demo_undistortImage_synthetic.mlx)
 
 实现的方法根据**实际畸变图像有所不同**，大致分为以下两类。
 
